@@ -35,4 +35,21 @@ class ExampleTest extends TestCase
             ]
         ]);
     }
+
+    public function testCanNotSendEmail()
+    {
+        $this->post(route('mail'), [
+            'email' => $this->faker->colorName,
+            'subject' => $this->faker->colorName,
+            'content' => $this->faker->colorName,
+        ]);
+        $this->assertResponseStatus(400);
+        $this->seeJsonStructure([
+            'errors' => [
+                'message',
+                'code',
+                'time'
+            ]
+        ]);
+    }
 }

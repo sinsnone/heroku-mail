@@ -21,7 +21,7 @@ class ExampleController extends Controller
                     'code' => 1,
                     'message' => $validated->errors()->first()
                 ]
-            ]);
+            ], 400);
         }
         return response()->json([
             'data' => [
